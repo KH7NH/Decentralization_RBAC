@@ -8,7 +8,7 @@ import Zoom from '@mui/material/Zoom'
 import Alert from '@mui/material/Alert'
 import { useForm } from 'react-hook-form'
 import Typography from '@mui/material/Typography'
-import TrungQuanDevIcon from '../assets/trungquandev-logo.png'
+import TrungQuanDevIcon from '../assets/logo_white.png'
 import authenrizedAxiosInstance from '~/utils/authorizedAxios'
 import { API_ROOT } from '~/utils/constants'
 import { useNavigate } from 'react-router-dom'
@@ -18,12 +18,13 @@ function Login() {
   const navigate = useNavigate()
 
   const submitLogIn = async (data) => {
-    console.log('submit login: ', data)
+    //console.log('submit login: ', data)
     const res = await authenrizedAxiosInstance.post(`${API_ROOT}/v1/users/login`, data)
-    // console.log(res.data)
+    //  console.log(res.data)
     const userInfo = {
       id: res.data.id,
-      email: res.data.email
+      email: res.data.email,
+      role: res.data.role
     }
     // Lưu thông tin và token vào trong localstorage
     localStorage.setItem('accessToken', res.data.accessToken)
@@ -41,7 +42,7 @@ function Login() {
       minHeight: '100vh',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      background: 'url("src/assets/trungquandev-bg-img.jpeg")',
+      background: 'url("src/assets/nen.jpg")',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',

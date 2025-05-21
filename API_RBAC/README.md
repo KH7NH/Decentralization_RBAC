@@ -1,19 +1,12 @@
-### Bộ code chuẩn để học về: "Cơ chế xác thực AccessToken và RefreshToken tự động". Sử dụng JWT - Jsonwebtoken và Axios Interceptors chuẩn thực tế.
+### Bộ code chuẩn để học về: ".
 
 - Playlist hướng dẫn chi tiết từ A-Z: [Tất tần tật về xử lý Authentication với JWT, cơ chế Refresh token tự động chuẩn thực tế khi token hết hạn, sử dụng Axios Interceptors | TrungQuanDev](https://www.youtube.com/playlist?list=PLP6tw4Zpj-RJwtNw9564QKFf93hWiDnR_)
 
-- Link Download Full Source Code hoàn chỉnh của cả bộ này và ủng hộ mình (Vui lòng đọc phần mô tả ở bất kỳ video nào trong Playlist trên để hiểu tại sao có 2 link bên dưới)
-
-- 🤝 Get Full Source Code for this Course here and support me 🍀
-
-- 🎁 on Ko-fi: https://ko-fi.com/s/706f63c3a7
-
-- 🎁 on Buy Me a Coffee: https://buymeacoffee.com/codetq/e/264489
-
+- 
 ### Requirements - Thông tin của bộ Code Base này - Chuẩn các phiên bản dưới đây để bắt đầu học: (Semantic Versioning)
 
 ```
-* nodejs = v20.12.2
+* nodejs >= v20.12.2
 * npm = v10.5.0
 * yarn = v1.22.19
 

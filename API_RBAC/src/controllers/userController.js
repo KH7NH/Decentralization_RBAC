@@ -11,14 +11,21 @@ import { JwtProvider,
  * Nếu muốn học kỹ và chuẩn chỉnh đầy đủ hơn thì xem Playlist này nhé:
  * https://www.youtube.com/playlist?list=PLP6tw4Zpj-RIMgUPYxhLBVCpaBs94D73V
  */
+
+const MOCK_ROLES = {
+  ClIENT: 'client',
+  MODERATOR: 'moderator',
+  ADMIN: 'admin'
+}
+
 const MOCK_DATABASE = {
   USER: {
     ID: 'trungquandev-sample-id-12345678',
     EMAIL: 'trungquandev.official@gmail.com',
-    PASSWORD: 'trungquandev@123'
+    PASSWORD: 'trungquandev@123',
+    ROLE: MOCK_ROLES.ClIENT
   }
 }
-
 
 const login = async (req, res) => {
   try {
@@ -31,7 +38,8 @@ const login = async (req, res) => {
     // Tạo thông tin payload đính kèm trong JWT : bao gồm id, email của user
     const userInfo = {
       id: MOCK_DATABASE.USER.ID,
-      email: MOCK_DATABASE.USER.EMAIL
+      email: MOCK_DATABASE.USER.EMAIL,
+      role: MOCK_DATABASE.USER.ROLE
     }
 
     // Tạo ra hai loại token, accessToken và refreshToken để trả về phía FE
@@ -109,7 +117,8 @@ const refreshToken = async (req, res) => {
     // lấy luôn từ decoded ra, tiết kiệm query để vào DB lấy data mới.
     const userInfo = {
       id: refreshTokenDecoded.id,
-      email: refreshTokenDecoded.email
+      email: refreshTokenDecoded.email,
+      role: refreshTokenDecoded.role
     }
     // Tạo accessToken mới
     const accessToken = await JwtProvider.generateToken(
