@@ -7,9 +7,8 @@ import Divider from '@mui/material/Divider'
 import authenrizedAxiosInstance from '~/utils/authorizedAxios'
 import { API_ROOT, TAB_ULRS } from '~/utils/constants'
 import { Button } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { handleLogoutAPI } from '~/apis'
-import { Link } from 'react-router-dom'
 import Duckhanhdev from '~/assets/hinh-nen-ronaldo-19.jpg'
 import imgcontent from '~/assets/nen.jpg'
 import Tab from '@mui/material/Tab'
@@ -20,6 +19,7 @@ import TabPanel from '@mui/lab/TabPanel'
 function Dashboard() {
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation()
 
 
   useEffect(() => {
@@ -40,7 +40,15 @@ function Dashboard() {
     navigate('/login')
   }
 
-  const [tab, setTab] = useState(TAB_ULRS.DASHBOARD)
+  // Function đơn giản có nhiệm vụ lấy ra giá trị tab dựa theo url khi refresh trang
+  const getDefaultActiveTab = () =>{
+    let activeTab = TAB_ULRS.DASHBOARD
+    Object.values(TAB_ULRS).forEach(tab => {
+      if(location.pathname.includes(tab)) activeTab=tab
+    })
+    return activeTab
+  }
+  const [tab, setTab] = useState(getDefaultActiveTab)
 
   const handleChange = (event, newTab) => {
     setTab(newTab)
@@ -97,11 +105,11 @@ function Dashboard() {
       <TabContext value={tab}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="Duckhanhdev">
-            <Tab label="Dashboard" value={TAB_ULRS.DASHBOARD} />
-            <Tab label="Support" value={TAB_ULRS.SUPPORT}/>
-            <Tab label="Messages" value={TAB_ULRS.MESSAGES}/>
-            <Tab label="Revenue" value={TAB_ULRS.REVENUE}/>
-            <Tab label="Admin Tools" value={TAB_ULRS.ADMIN_TOOLS} />
+            <Tab label="Dashboard" value={TAB_ULRS.DASHBOARD} component={Link} to={'/dashboard'} />
+            <Tab label="Support" value={TAB_ULRS.SUPPORT} component={Link} to={'/support'} />
+            <Tab label="Messages" value={TAB_ULRS.MESSAGES} component={Link} to={'/messages'} />
+            <Tab label="Revenue" value={TAB_ULRS.REVENUE} component={Link} to={'/revenue'} />
+            <Tab label="Admin Tools" value={TAB_ULRS.ADMIN_TOOLS} component={Link} to={'/admin-tools'} />
           </TabList>
         </Box>
         <TabPanel value={TAB_ULRS.DASHBOARD}>
