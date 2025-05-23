@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import Login from '~/pages/Login'
 import Dashboard from '~/pages/Dashboard'
 import NotFound from './pages/NotFound'
+import AccessDenied from './pages/AccessDenied'
 
 const ProtectedRoute = () =>{
   const user = JSON.parse(localStorage.getItem('userInfo'))
@@ -40,7 +41,7 @@ function App() {
         <Route path='/admin-tools' element={<Dashboard />} />
       </Route>
       
-      <Route path='/access-denied' element={<div>Access Denied</div>} />
+      <Route path='/access-denied' element={<AccessDenied />} />
       <Route path='*' element={<NotFound />}/>
     </Routes>
   )
